@@ -40,6 +40,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     
     'kindle_clips',
+    'book_recommend',
 )
 
 MIDDLEWARE_CLASSES = (

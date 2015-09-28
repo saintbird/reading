@@ -1,0 +1,58 @@
+{% extends "base.html" %}
+
+{% block content %}
+<!-- Page Heading/Breadcrumbs -->
+<div class="row">
+    <div class="col-lg-12">
+        <ol class="breadcrumb">
+            <li><a href="index.html">Home</a>
+            </li>
+            <li class="active">书单推荐</li>
+        </ol>
+    </div>
+</div>
+<!-- /.row -->
+
+<!-- Content Row -->
+<div class="row">
+      <!-- Sidebar Column -->
+      <div class="col-md-3">
+          <div class="list-group">
+              <a href="kindle.html" class="list-group-item active">豆瓣高分图书</a>
+              <a href="notes.html" class="list-group-item">名人推荐书单</a>
+              <a href="services.html" class="list-group-item">Services</a>
+              <a href="contact.html" class="list-group-item">Contact</a>
+              <a href="blog-post.html" class="list-group-item">Blog Post</a>
+              <a href="full-width.html" class="list-group-item">Full Width Page</a>
+              <a href="sidebar.html" class="list-group-item">Sidebar Page</a>
+          </div>
+      </div>
+      <!-- Content Column -->
+      <div class="col-md-9">        
+        <!-- Blog Post Row -->
+        {%for book in books%}
+        <div class="row">
+            <div class="col-md-3">
+                <a href="blog-post.html">
+                    <img class="img-responsive img-hover" src={{book.imgUrl}} style = "height: auto; width: 150px" alt="">
+                </a>
+            </div>
+            <div class="col-md-6">
+                <h3>
+                    <a href="blog-post.html">{{book.title}}</a>
+                </h3>
+                <p>评价数：{{book.votes}}</p>
+                <p>评分：{{book.rates}}</p>
+                <p>简介：Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</p>
+                <a class="btn btn-primary" href="blog-post.html">Read More <i class="fa fa-angle-right"></i></a>
+            </div>
+        </div>
+        <hr>
+        {%endfor%}
+        <!-- /.row -->
+      </div>
+</div>
+
+<hr>
+
+{% endblock %}
