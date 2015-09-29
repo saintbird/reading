@@ -8,3 +8,9 @@ def index(request):
     t = loader.get_template('book_recommend.html')
     c = Context({'books':books})
     return HttpResponse(t.render(c))
+
+def pages(request):
+    books = BookInfo.objects.all()
+    t = loader.get_template('book_recommend_pages.html')
+    c = Context({'books':books})
+    return HttpResponse(t.render(c))

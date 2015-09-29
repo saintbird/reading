@@ -1,40 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<!-- Page Heading/Breadcrumbs -->
-<div class="row">
-    <div class="col-lg-12">
-        <ol class="breadcrumb">
-            <li><a href="index.html">Home</a>
-            </li>
-            <li class="active">Sidebar Page</li>
-        </ol>
-    </div>
-</div>
-<!-- /.row -->
-
 <!-- Content Row -->
 <div class="row">
       <!-- Sidebar Column -->
-      <div class="col-md-2">
+      <div class="col-md-3">
           <div class="list-group">
-              <a href="kindle.html" class="list-group-item active">Kindle便签</a>
-              <a href="notes.html" class="list-group-item">我的笔记</a>
-              <a href="services.html" class="list-group-item">Services</a>
-              <a href="contact.html" class="list-group-item">Contact</a>
-              <a href="blog-post.html" class="list-group-item">Blog Post</a>
-              <a href="full-width.html" class="list-group-item">Full Width Page</a>
-              <a href="sidebar.html" class="list-group-item">Sidebar Page</a>
+              <a href="kindle.html" class="list-group-item active">我的Kindle便签</a>
+              <a href="notes.html" class="list-group-item">Kindle便签转换</a>
           </div>
       </div>
       <!-- Content Column -->
-      <div class="col-md-10">
-            <form enctype="multipart/form-data">
-                <input id="file_upload" class="file" type="file" multiple data-min-file-count="1">
-                <br>
-                <button type="submit" class="btn btn-primary">Submit</button>
-                <button type="reset" class="btn btn-default">Reset</button>
-            </form>
+      <div class="col-md-9">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">
+                <a data-toggle="collapse" data-parent="#accordion" href="/demo/bootstrap3-plugin-collapse-method.htm#collapseThree">
+                    Book1
+                </a>
+                </h4>
+            </div>
+            <div id="collapseThree" class="panel-collapse collapse">
+                <div class="panel-body">
+                笔记1
+                </div>
+                <div class="panel-body">
+                笔记2
+                </div>
+                <div class="panel-body">
+                笔记3
+                </div>
+            </div>
+        </div>
       </div>
 </div>
 

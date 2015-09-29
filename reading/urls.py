@@ -21,4 +21,5 @@ urlpatterns = [
     url(r'^$',  'reading.views.index', name='home'),
     url(r'^kindle/$', 'kindle_clips.views.index', name='kindle_clips'),
     url(r'^book/$', 'book_recommend.views.index', name='book_recommend'),
+    url(r'^book_recommend_pages/$', 'book_recommend.views.pages', name='book_recommend_pages'),
 ]
