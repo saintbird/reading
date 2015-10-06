@@ -9,3 +9,4 @@ class BookInfo(models.Model):
     votes = models.CharField(max_length=10)
     imgUrl = models.CharField(max_length=50)
     tag = models.CharField(max_length=10)
+    
