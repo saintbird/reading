@@ -13,3 +13,6 @@ class BookInfo(models.Model):
     authorIntro = models.CharField(max_length=1000)
     summary = models.CharField(max_length=1000)
     
+    def __unicode__(self):
+        return self.title
+    
