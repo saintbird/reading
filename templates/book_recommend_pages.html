@@ -21,19 +21,17 @@
         <!-- Blog Post Row -->
         {%for book in books%}
         <div class="row">
-            <div class="col-md-3">
-                <a href="blog-post.html">
-                    <img class="img-responsive img-hover" src={{book.imgUrl}} style = "height: auto; width: 120px" alt="">
-                </a>
+            <div class="col-md-2">   
+                <img class="img-responsive center-block" src={{book.imgUrl}} alt="">                
             </div>
-            <div class="col-md-6">
+            <div class="col-md-10">
                 <h3>
                     <a href="blog-post.html">{{book.title}}</a>
                 </h3>
-                <p>评价数：{{book.votes}}</p>
-                <p>评分：{{book.rates}}</p>
                 <p>作者：{{book.author}}</p>
-                <a class="btn btn-primary" href="blog-post.html">Read More <i class="fa fa-angle-right"></i></a>
+                <p>评分：{{book.rates}} 评价数：{{book.votes}}</p>
+                <p>{{book.summary}}</p>
+
             </div>
         </div>
         <hr>

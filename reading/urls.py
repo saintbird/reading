@@ -20,5 +20,5 @@ urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',  'reading.views.index', name='home'),
     url(r'^book/$', 'book_recommend.views.index', name='book_recommend'),
-    url(r'^book_recommend_pages/$', 'book_recommend.views.pages', name='book_recommend_pages'),
+    url(r'^book_recommend_pages/(.+)/$', 'book_recommend.views.pages', name='book_recommend_pages'),
 ]

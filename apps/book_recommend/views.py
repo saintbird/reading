@@ -1,3 +1,5 @@
+#coding=utf-8
+
 from django.template import loader,Context
 from django.http import HttpResponse
 from book_recommend.models import BookInfo
@@ -8,8 +10,8 @@ def index(request):
     t = loader.get_template('book_recommend.html')
     return HttpResponse(t.render())
 
-def pages(request):
-    bookList = BookInfo.objects.all()
+def pages(request,tag):
+    bookList = BookInfo.objects.filter(tag=tag)
     page_size=15
     paginator = Paginator(bookList, page_size)
     try:
