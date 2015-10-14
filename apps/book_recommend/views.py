@@ -12,7 +12,7 @@ def index(request):
 
 def pages(request,tag):
     bookList = BookInfo.objects.filter(tag=tag)
-    page_size=15
+    page_size=14
     paginator = Paginator(bookList, page_size)
     try:
         page = int(request.GET.get('page','1'))
@@ -24,6 +24,6 @@ def pages(request,tag):
     except (EmptyPage, InvalidPage):
         books = paginator.page(paginator.num_pages)         
      
-    t = loader.get_template("book_recommend_pages.html")
+    t = loader.get_template("book_cat.html")
     c = Context({'books':books})
     return HttpResponse(t.render(c))
