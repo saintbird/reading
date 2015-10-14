@@ -8,17 +8,13 @@ a{color:#613f23;text-decoration:none;}
 a:hover{color:#ed6c00;text-decoration:none;}
 /* 统一调用背景图 */
 .m-logo a{background:url(../images/logo.png) no-repeat;}
-.u-bookitm0 .cover,.u-bookitm1 .cover,.u-aimg a,.m-activity .list .cover.u-txtlst .img,.u-commitm .cover{background:url(../images/cover.png?68a8426b7c176e95798feb4dcdb2d646) no-repeat;}
 .icn-weibo,.icn-qq,.icn-qzone,.icn-weibo2,.icn-qq2,.icn-xm,.icn-xm2,.icn-xm3{background:url(../images/icon-logo.png?677636f74a7dabe0d4ea668f3026c553) -9999px -9999px no-repeat;}
 .icn-new,.icn-hot,.icn-free,.icn-limitfree,.icn-off,.icn-warn,.u-stargrade .icon,.u-rating li,.icn-limitfree2{background:url(../images/sprite-24.png?47d3d7113a090a17dc080e216c1c8c0b) -9999px -9999px no-repeat;}
 .icn-android,.icn-kindle,.icn-ios,.icn-web,.icn-avatar,.icn-step1,.icn-step2,.icn-step3,.icn-cart,.icn-heart,.icn-cart-chk,.icn-heart-chk,.icn-cart2,.icn-smile,.icn-talk,.icn-trash,.icn-search,.icn-search2,.icn-gift,
 .icn-close,.icn-close2,.icn-null,.icn-disappoint,.icn-arr,.icn-coupon,.icn-coupon1,.icn-coupon2,.icn-plus,.icn-ok{background:url(../images/sprite.png?94602beeaa1b86797b2dd4c43aa3cce4) -9999px -9999px no-repeat;}
 .icn-change{background: url(../images/icon-change.png) no-repeat}
 .icn-quan{background: url(../images/icon-quan.png) no-repeat}
-.u-load p{background:url(../images/circle.gif?25861a59155ad067754cbdf413289197) no-repeat;}
-.u-load-big p{background:url(../images/circle-big.gif?4ccf5e1ac0793fa26aebc9278f977723) no-repeat;}
-.u-bank .list .itm{background:url(../images/bank.png?197b35e451bcd6db7804725a97164d7c) no-repeat;}
-.m-aimg,.g-ft .wrap{background:url(../images/line.png?33306a2ada9ebf57b438a8ccc1412705) center top no-repeat;}
+.m-aimg,.g-ft .wrap{center top no-repeat;}
 .u-slider .slides,.m-specialss .img,.m-bookdata .cover{background:url(../images/loading-big.gif?316ca34299acd27f0d0e02f450ea3572) center no-repeat;}
 .m-noobtips{background:url(../images/noobgift.png?a9d7a77f958d0eede4d90657fbaa6a5c) 14px 52px no-repeat;}
 .u-device2 .qr{background:url(../images/qr_detail.png?08135c23566ec56570d434ac777fc066) 0 0 no-repeat;}

@@ -3,6 +3,21 @@
 from django.db import models
 
 # Create your models here.
+    
+class MainTag(models.Model):
+    name = models.CharField(max_length=30)
+    
+    def __unicode__(self):
+        return self.name
+
+    
+class SubTag(models.Model):
+    name = models.CharField(max_length=30)
+    parent = models.ForeignKey(MainTag)
+    
+    def __unicode__(self):
+        return self.name
+
 class BookInfo(models.Model):
     title = models.CharField(max_length=30)
     rates = models.CharField(max_length=10)
@@ -15,4 +30,3 @@ class BookInfo(models.Model):
     
     def __unicode__(self):
         return self.title
-    
