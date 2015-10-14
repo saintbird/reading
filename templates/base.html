@@ -1,18 +1,21 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 
 {%include 'head.html'%}
 
-<body>
-{% include 'nav.html' %}
-
-{% block content %}
-<div>这里是默认内容，所有继承自这个模板的，如果不覆盖就显示这里的默认内容。</div>
-{% endblock %}
-
-<!-- Footer -->
-{% include 'foot.html' %}
+<body id="page-duokan-com" itemscope="" itemtype="http://schema.org/WebPage" class="xm-accounts">
+    <noscript>请使用支持脚本的浏览器！</noscript>
     
-{% include 'foot_script.html' %}
+    <div class="g-doc">
+        {%include 'nav.html'%}
+
+        {% block content %}
+        <div>这里是默认内容，所有继承自这个模板的，如果不覆盖就显示这里的默认内容。</div>
+        {% endblock %}
+    </div>
+
+    <!-- Footer -->
+    {% include 'foot.html' %}
+
 </body>
 </html>

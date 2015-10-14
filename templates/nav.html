@@ -1,21 +1,23 @@
-<nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
-    <div class="container">
-        <!-- Brand and toggle get grouped for better mobile display -->
-        <div class="navbar-header">
-            <a class="navbar-brand" href={%url "home" %}>阅.读</a>
+<header class="g-hd">
+    <div class="m-header">
+        <div class="wrap">
+            <div class="m-logo">
+                <a href="/" title="只读" hidefocus="hidefocus">只读</a>
+            </div>
         </div>
-        <!-- Collect the nav links, forms, and other content for toggling -->
-        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav navbar-right">
-                <li class= "active">
-                    <a href={%url "book_recommend" %}>书单推荐</a>
-                </li>
-                <li>
-                    <a href="about.html">关于我们</a>
-                </li>
+
+        <nav class="m-nav">
+            <ul class="f-cb" itemprop="breadcrumb">
+                <li id="index" class=""><a href="/" hidefocus="hidefocus">首页</a></li>
+
+                <li id="rank" class="crt"><a href="{%url "book_recommend_pages" "豆瓣高分"%}">豆瓣高分图书</a></li>
+
+                <li id="review" class=""><a href="{%url "book_recommend_pages" "名人推荐"%}">名人推荐书单</a></li>
+
+                <li id="bargain" class=""><a href="{%url "book_recommend_pages" "主题书单"%}">主题书单</a></li>
+
+                <li id="category" class=""><a href="{%url "book_recommend_pages" "外文书单"%}">外文书单</a></li>
             </ul>
-        </div>
-        <!-- /.navbar-collapse -->
+        </nav>
     </div>
-    <!-- /.container -->
-</nav>
+</header>
