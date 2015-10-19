@@ -7,11 +7,7 @@ from book_recommend.models import SubTag
 from django.core.paginator import Paginator, InvalidPage, EmptyPage
 
 # Create your views here.
-def index(request):
-    t = loader.get_template('book_recommend.html')
-    return HttpResponse(t.render())
-
-def pages(request,tag):
+def douban(request,tag):
     tagList = SubTag.objects.filter(parent=1)
     
     bookList = BookInfo.objects.filter(tag=tag)
@@ -27,6 +23,18 @@ def pages(request,tag):
     except (EmptyPage, InvalidPage):
         books = paginator.page(paginator.num_pages)         
      
-    t = loader.get_template("book_cat.html")
+    t = loader.get_template("douban.html")
     c = Context({'books':books,'tagList':tagList,'url_tag':tag})
     return HttpResponse(t.render(c))
+
+def famous(request,tag):
+    t = loader.get_template('famous.html')
+    return HttpResponse(t.render())
+
+def subjects(request,tag):
+    t = loader.get_template('subjects.html')
+    return HttpResponse(t.render())
+
+def foreign(request,tag):
+    t = loader.get_template('foreign.html')
+    return HttpResponse(t.render())

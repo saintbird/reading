@@ -1,5 +1,13 @@
 {% extends "base.html" %}
 
+{% block nav %}
+<li id="index" class=""><a href="/" hidefocus="hidefocus">首页</a></li>
+<li id="douban" class="crt"><a href="{%url "douban" "小说"%}">豆瓣高分图书</a></li>
+<li id="famous" class=""><a href="{%url "famous" "名人推荐"%}">名人推荐书单</a></li>
+<li id="subjects" class=""><a href="{%url "subjects" "主题书单"%}">主题书单</a></li>
+<li id="foreign" class=""><a href="{%url "foreign" "外文书单"%}">外文书单</a></li>
+{% endblock %}
+
 {% block content %}
 <div class="g-bd2 g-bd2-1">
     <div class="g-mn">
@@ -95,7 +103,7 @@
                         {%for tag in tagList%}
                         <li>
                             <div class="wrap {%if url_tag == tag.name%}checked{%endif%}">
-                                <a href="{%url "book_recommend_pages" tag.name%}" hidefocus="hidefocus"><span>{{tag.name}}</span> <em class="num">10168</em></a>
+                                <a href="{%url "douban" tag.name%}" hidefocus="hidefocus"><span>{{tag.name}}</span> <em class="num">10168</em></a>
                             </div>
                         </li>
                         {%endfor%}                               

@@ -7,7 +7,27 @@
     <noscript>请使用支持脚本的浏览器！</noscript>
     
     <div class="g-doc">
-        {%include 'nav.html'%}
+        <header class="g-hd">
+            <div class="m-header">
+                <div class="wrap">
+                    <div class="m-logo">
+                        <a href="/" title="只读" hidefocus="hidefocus">只读</a>
+                    </div>
+                </div>
+        
+                <nav class="m-nav">
+                    <ul class="f-cb" itemprop="breadcrumb">
+                        {% block nav %}
+                        <li id="index" class="crt"><a href="/" hidefocus="hidefocus">首页</a></li>
+                        <li id="douban" class=""><a href="{%url "douban" "小说"%}">豆瓣高分图书</a></li>
+                        <li id="famous" class=""><a href="{%url "famous" "名人推荐"%}">名人推荐书单</a></li>
+                        <li id="subjects" class=""><a href="{%url "subjects" "主题书单"%}">主题书单</a></li>
+                        <li id="foreign" class=""><a href="{%url "foreign" "外文书单"%}">外文书单</a></li>
+                        {% endblock %}
+                    </ul>
+                </nav>
+            </div>
+        </header>
 
         {% block content %}
         <div>这里是默认内容，所有继承自这个模板的，如果不覆盖就显示这里的默认内容。</div>
