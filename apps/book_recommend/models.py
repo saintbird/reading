@@ -27,6 +27,7 @@ class BookInfo(models.Model):
     author = models.CharField(max_length=30)
     authorIntro = models.CharField(max_length=1000)
     summary = models.CharField(max_length=1000)
+    price = models.CharField(max_length=10)
     
     def __unicode__(self):
         return self.title
