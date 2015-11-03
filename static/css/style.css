@@ -74,7 +74,7 @@ a:hover{color:#ed6c00;text-decoration:none;}
 .m-pctrl .login{padding:0 8px;}
 /* header */
 .m-header{position:relative;z-index:100;width:1200px;margin:0 auto;border-bottom:2px solid #fa7a20;}
-.m-header .wrap{height:48px;padding:20px 0;}
+.m-header .wrap{height:90px;padding:20px 0;}
 .m-header .m-nav{height:44px;padding-left:248px;margin-bottom:-4px;line-height:44px;background:#fa7a20;border-radius:3px;}
 .m-header .u-search{position:absolute;right:0;top:25px;}
 
@@ -85,7 +85,7 @@ a:hover{color:#ed6c00;text-decoration:none;}
 .m-quicknav .cnt{width:90px;}
 /* logo */
 .m-logo,.m-logo a{display:inline;float:left;width:175px;height:52px;}
-.m-logo{width:240px;margin-right:8px;}
+.m-logo{width:300px;margin-right:8px;}
 .m-logo a{position:relative;text-indent:-20000px;}
 /* nav */
 .m-nav li{float:left;}

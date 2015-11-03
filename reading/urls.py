@@ -19,6 +19,8 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',  'reading.views.index', name='home'),
+    url(r'^about$',  'reading.views.about', name='about'),
+    url(r'^feedback$',  'reading.views.feedback', name='feedback'),
     url(r'^douban/(.+)/$', 'book_recommend.views.douban', name='douban'),
     url(r'^famous/(.+)/$', 'book_recommend.views.famous', name='famous'),
     url(r'^sujects/(.+)/$', 'book_recommend.views.subjects', name='subjects'),

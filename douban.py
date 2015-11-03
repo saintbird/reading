@@ -6,7 +6,10 @@ import codecs
 import json
 import sys
 import os
+import cookielib
 import django
+import random
+import time
 
 reload(sys)
 sys.setdefaultencoding('utf8')
@@ -14,93 +17,74 @@ os.environ.setdefault("DJANGO_SETTINGS_MODULE", "reading.settings")
 django.setup()
 
 from book_recommend.models import BookInfo
-        
-def get_book_info_from_page(tag,url):
-    print url
-    exception_file = codecs.open("exception", 'a+','utf-8')
 
+def openurl(url):
+    """
+    打开网页
+    """
+    cookie_support= urllib2.HTTPCookieProcessor(cookielib.CookieJar())
+    opener = urllib2.build_opener(cookie_support,urllib2.HTTPHandler)
+    urllib2.install_opener(opener)
+    user_agents = [
+                'Mozilla/5.0 (Windows; U; Windows NT 5.1; it; rv:1.8.1.11) Gecko/20071127 Firefox/2.0.0.11',
+                'Opera/9.25 (Windows NT 5.1; U; en)',
+                'Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1; .NET CLR 1.1.4322; .NET CLR 2.0.50727)',
+                'Mozilla/5.0 (compatible; Konqueror/3.5; Linux) KHTML/3.5.5 (like Gecko) (Kubuntu)',
+                'Mozilla/5.0 (X11; U; Linux i686; en-US; rv:1.8.0.12) Gecko/20070731 Ubuntu/dapper-security Firefox/1.5.0.12',
+                'Lynx/2.8.5rel.1 libwww-FM/2.14 SSL-MM/1.4.1 GNUTLS/1.2.9',
+                "Mozilla/5.0 (X11; Linux i686) AppleWebKit/535.7 (KHTML, like Gecko) Ubuntu/11.04 Chromium/16.0.912.77 Chrome/16.0.912.77 Safari/535.7",
+                "Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:10.0) Gecko/20100101 Firefox/10.0 ",
+
+                ] 
+   
+    agent = random.choice(user_agents)
+    opener.addheaders = [("User-agent",agent),("Accept","*/*"),('Referer','http://www.google.com')]
     try:
-        obj = urllib2.urlopen(url)
-        html = obj.read()
-        obj.close()
-        soup = BeautifulSoup(html)
-        booklist = soup.find_all("dl")
+        res = opener.open(url)
     except Exception,e:
-        exception_file.write("except1"+"\n" + url+"\n"+str(e)+"\n")
-        return "exception"
-
-    if len(booklist) == 0:
-        return "finish"
+        raise Exception
+    else:
+        return res
     
-    ret = ""
-    i = 0
-    for book in booklist:
-        i = i+1
-        try:
-            book_rates = book.select("span.rating_nums")[0].text
-        except Exception,e:
-            exception_file.write("except2:"+str(i)+"\n"+url+"\n"+str(e)+"\n")
-            continue
-
-        if float(book_rates)>8.4:
-            book_detail_url = book.select("a")[0]["href"]
-            print book_detail_url
-            try:
-                obj2 = urllib2.urlopen(book_detail_url)
-                book_detail = obj2.read()
-                obj2.close()
-                book_detail_soup = BeautifulSoup(book_detail)
-                img_url = book_detail_soup.select("a.nbg")[0]["href"]
-                title = book_detail_soup.select("a.nbg")[0]["title"]
-                votes = book_detail_soup.find("span",{"property": "v:votes"}).string
-                intro_list = book_detail_soup.select("div.intro")
-                if len(intro_list) != 3:
-                    intro = intro_list[0].text
-                else:
-                    intro = intro_list[1].text
-                if long(votes)>100:
-                    ret = ret +title +'#$' +book_rates + '#$' +votes + '#$' +img_url+'#$' +tag +'#$'+book_detail_url+'#$'+intro+'\n'
-            except Exception,e:
-                exception_file.write("except3"+"\n"+book_detail_url+"\n"+str(e)+"\n")
-                continue
-    exception_file.close()
-    return ret
+headers = {'User-Agent':'Mozilla/5.0 (Windows; U; Windows NT 6.1; cn-ZH; rv:1.9.1.6)Gecko/20091201 Firefox/3.5.6'}   
             
 def get_book_info_from_api(tag,url):
     print url
     exception_file = codecs.open("exception", 'a+','utf-8')
     ret = ""
     BookList = []
-    #try:
-    obj = urllib2.urlopen(url)
-    html = obj.read()
-    obj.close()
-    js = json.loads(html)
-    if js["count"] == 0:
-        ret  = "finish"
-    else:
-        for i in range(0,len(js["books"])):
-            rates=float(js["books"][i]["rating"]["average"])
-            votes=js["books"][i]["rating"]["numRaters"]
-            if (rates>8.4 and votes>1000) or (rates>8 and votes>10000):
-                authorList=str(js["books"][i]["author"]).replace("\\xb7",".").decode('raw_unicode_escape').split(",")
-                if len(authorList) == 1:
-                    author = authorList[0][3:-2]
-                else:
-                    author = authorList[0][3:-1]
-                book = BookInfo(title=js["books"][i]["title"], 
-                            rates=str(js["books"][i]["rating"]["average"]),
-                            votes=str(js["books"][i]["rating"]["numRaters"]),
-                            imgUrl=js["books"][i]["images"]["large"],
-                            tag=tag,
-                            author = author,
-                            authorIntro = js["books"][i]["author_intro"],
-                            summary=js["books"][i]["summary"])
-                BookList.append(book)
-        BookInfo.objects.bulk_create(BookList)
-    #except Exception,e:
-        #exception_file.write(url+"\n"+str(e)+"\n")
-        #ret = "exception"
+    try:
+        req = urllib2.Request(url = url, headers = headers)
+        obj = openurl(url)
+        html = obj.read()
+        obj.close()
+        js = json.loads(html)
+        if js["count"] == 0:
+            ret  = "finish"
+        else:
+            for i in range(0,len(js["books"])):
+                rates=float(js["books"][i]["rating"]["average"])
+                votes=js["books"][i]["rating"]["numRaters"]
+                if (rates>8.4 and votes>1000) or (rates>8 and votes>10000):
+                    authorList=str(js["books"][i]["author"]).replace("\\xb7",".").decode('raw_unicode_escape').split(",")
+                    if len(authorList) == 1:
+                        author = authorList[0][3:-2]
+                    else:
+                        author = authorList[0][3:-1]
+                    book = BookInfo(title=js["books"][i]["title"], 
+                                rates=str(js["books"][i]["rating"]["average"]),
+                                votes=str(js["books"][i]["rating"]["numRaters"]),
+                                imgUrl=js["books"][i]["images"]["large"],
+                                tag=tag,
+                                author = author,
+                                authorIntro = js["books"][i]["author_intro"].replace("\n","<br>"),
+                                summary=js["books"][i]["summary"].replace("\n","<br>"),
+                                price = js["books"][i]["price"])
+                    BookList.append(book)
+            BookInfo.objects.bulk_create(BookList)
+    except Exception,e:
+        exception_file.write(url+"\n"+str(e)+"\n")
+        ret = "exception"
         
     exception_file.close()
     return ret
@@ -114,8 +98,11 @@ if __name__ == '__main__':
     for tag in tag_list_wenxue:
         tmp_url = base_url.replace("tag_name",tag)
 
-        for i in range(0,3):
+        for i in range(2000,3000):
             url = tmp_url + str(i*20)
+            random_time = (int)(random.random()*10)
+            print random_time
+            time.sleep(random_time)
             ret = get_book_info_from_api(tag,url)
             if ret =="finish":
                 print "finish"
