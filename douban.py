@@ -71,7 +71,10 @@ def get_book_info_from_api(tag,url):
                         author = authorList[0][3:-2]
                     else:
                         author = authorList[0][3:-1]
-                    book = BookInfo(title=js["books"][i]["title"], 
+                    book = BookInfo(bookid=js["books"][i]["id"],
+                                isbn10=js["books"][i]["isbn10"],
+                                isbn13=js["books"][i]["isbn13"],
+                                title=js["books"][i]["title"], 
                                 rates=str(js["books"][i]["rating"]["average"]),
                                 votes=str(js["books"][i]["rating"]["numRaters"]),
                                 imgUrl=js["books"][i]["images"]["large"],
@@ -92,13 +95,13 @@ def get_book_info_from_api(tag,url):
 if __name__ == '__main__':
     #base_url = "http://www.douban.com/tag/tag_name/book?start="
     base_url = "https://api.douban.com/v2/book/search?tag=tag_name&start="
-    tag_list_wenxue = ["小说",]
-    tag_list_jingguan = ["经济学","管理",	"经济","金融","商业","投资","营销","理财","创业","广告","股票","企业史","策划"]
+    tag_list_wenxue = ["小说","历史"]
+    tag_list_jingguan = ["心理学","社会学","经济学","管理","金融","互联网","科学"]
    
     for tag in tag_list_wenxue:
         tmp_url = base_url.replace("tag_name",tag)
 
-        for i in range(2000,3000):
+        for i in range(0,3000):
             url = tmp_url + str(i*20)
             random_time = (int)(random.random()*10)
             print random_time

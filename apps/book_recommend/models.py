@@ -19,6 +19,9 @@ class SubTag(models.Model):
         return self.name
 
 class BookInfo(models.Model):
+    bookid = models.CharField(max_length=10)
+    isbn10 = models.CharField(max_length=15)
+    isbn13 = models.CharField(max_length=15)
     title = models.CharField(max_length=30)
     rates = models.CharField(max_length=10)
     votes = models.CharField(max_length=10)
